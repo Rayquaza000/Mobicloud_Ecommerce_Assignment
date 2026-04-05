@@ -13,3 +13,5 @@ db.on("open",()=>{
 db.on("error",()=>{
     console.log("Database connection error")
 })
+
+export default db;
