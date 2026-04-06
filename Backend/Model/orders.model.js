@@ -9,11 +9,11 @@ const orderSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    OrderItems:{
+    orderItems:{
         type:Array<String>(null),
         required:true
     },
-    OrderItemPrice:{
+    orderItemPrice:{
         type:Array<Number>(null),
         required:true
     },
