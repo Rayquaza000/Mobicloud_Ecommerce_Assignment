@@ -31,10 +31,55 @@ export async function login(req,res)
         const token=jwt.sign({"userEmail":req.body.email},process.env.JWT_SECRET_KEY);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,       // ✅ MUST in production
-            sameSite: "None"    // if frontend/backend on different domains
+            secure: true,       
+            sameSite: "None"    
         });
-        return res.status(200).json({"message":"Login successfull","userName":existingUser.userName,"userEmail":existingUser.userEmail,"userCart":existingUser.userCart});
+        return res.status(200).json({"message":"Login successfull","userID":existingUser._id,"userName":existingUser.userName,"userEmail":existingUser.userEmail,"userCart":existingUser.userCart});
+    }
+    catch(error)
+    {
+        return res.status(500).json({"error":error});
+    }
+}
+
+export async function displayCart(req,res)
+{
+    try{
+        const userData=await User_data.findOne({"_id":req.body.userId});
+        const userCart=userData.userCart;
+        return res.status(200).json({"message":"cart data received","userCart":userCart})
+    }
+    catch(error)
+    {
+        return res.status(500).json({"error":error});
+    }
+}
+
+export async function updateCart(req,res)
+{
+    try{
+        const userData=await User_data.findOne({_id:req.body.id});
+        if(userData)
+        {
+            userData.userCart=req.body.cart;
+            await userData.save();
+            return res.status(200).json({"message":"Cart updated successfully"});
+        }
+        else{
+            return res.status(500).json({"error":"user with id "+req.body.id+" could not be found"});
+        }
+    }
+    catch(error)
+    {
+        return res.status(500).json({"error":error});
+    }
+}
+
+export function logout(req,res)
+{
+    try{
+        res.clearCookie("token")
+        return res.status(200).json({"message":"User loggedout"})
     }
     catch(error)
     {
