@@ -1,6 +1,6 @@
 export function userRoutes(app){
     app.post("/signup",validateDetails,checkIfUserExists,signup);
-    app.post("/login",validateDetails,checkIfDetailsAreAMatch,login);
+    app.post("/login",checkIfDetailsAreAMatch,login);
     app.post("/adminLogin",validateAdminDetails,checkIfAdminDetailsAreAMatch,adminLogin);
     app.post("/cart",verifyJWT,displayCart);
     app.patch("/updateCart",verifyJWT,updateCart);
