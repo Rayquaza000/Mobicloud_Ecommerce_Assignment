@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { User_data } from "../Model/users.model";
+import { User_data } from "../Model/users.model.js";
 
 export function adminLogin(req,res)
 {
