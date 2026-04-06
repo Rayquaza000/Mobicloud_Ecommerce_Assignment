@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 const cartSchema=mongoose.Schema({
     itemsArray:{
-        type: Array<String>(null),
+        type: Array,
     },
     priceOfOneUnitArray:{
-        type:Array<Number>(null),
+        type:Array,
     },
     quantityArray:{
-        type:Array<Number>(null),
+        type:Array,
     }
 });
 

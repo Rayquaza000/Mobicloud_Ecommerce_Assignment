@@ -10,15 +10,15 @@ const orderSchema=mongoose.Schema({
         required:true
     },
     orderItems:{
-        type:Array<String>(null),
+        type:Array,
         required:true
     },
     orderItemPrice:{
-        type:Array<Number>(null),
+        type:Array,
         required:true
     },
     orderItemQuantity:{
-        type:Array<Number>(null),
+        type:Array,
         required:true
     },
     orderTotalPrice:{
