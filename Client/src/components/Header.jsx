@@ -13,13 +13,13 @@ const Header = () => {
         </div>
 
         <div className='flex flex-row mx-auto'>
-        <input type="text" placeholder="Search by title" className='border border-black bg-[#f2f2f2] text-black text-[18px] pl-1.5 w-[400px]'></input>
+        <input type="text" placeholder="Search by title" className='border border-black bg-[#f2f2f2] text-black text-[18px] pl-1.5 w-100'></input>
         <button className='bg-[#f2f2f2] text-black text-[18px] p-1.5 border-black border'>Search</button>
         </div>
         <div className="flex flex-row justify-evenly items-center bg-blue-500 p-1 border border-black text-[20px] font-normal">
             <button className='border border-black text-black font-normal bg-gray-400 m-1 p-1'>Login</button>
-            <div className='bg-blue-800 border-1 border-blue-950 m-1 p-1'>Profile</div>
-            <div className='bg-blue-800 border-1 border-blue-950 m-1 p-1'>Cart</div>
+            <div className='bg-blue-800 border border-blue-950 m-1 p-1'>Profile</div>
+            <div className='bg-blue-800 border border-blue-950 m-1 p-1'>Cart</div>
         </div>
     </header>
 
