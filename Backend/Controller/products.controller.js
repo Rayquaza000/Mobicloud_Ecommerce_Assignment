@@ -4,7 +4,16 @@ import { productRoutes } from "../Routes/products.routes.js";
 export async function categorywiseProduct(req,res)
 {
     try{
-        const products=await Product_data.find({productCategory:req.params.category});
+        
+        let products;
+        if(req.params.category=="All")
+        {
+            
+            products=await Product_data.find({});
+        }
+        else{
+        products=await Product_data.find({productCategory:req.params.category});
+        }
         if(products)
         {
             return res.status(200).json({"message":"Products fetched","products":products});
