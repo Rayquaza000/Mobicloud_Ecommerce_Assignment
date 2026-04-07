@@ -9,6 +9,7 @@ import {MainLayout} from "./MainLayout.jsx";
 import { Orders } from './pages/Orders.jsx'
 import { Products } from './pages/Products.jsx'
 import { Users } from './pages/Users.jsx'
+import Login from './pages/Login.jsx'
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
         {
           path:"/users",
           element:<Users/>
+        },
+        {
+          path:"/adminLogin",
+          element:<Login/>
         }
       ]
     }

@@ -1,7 +1,28 @@
 import React from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import { setAdmin } from '../features/auth/authSlice'
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-  return (
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+    const admin=useSelector((state)=>state.auth.user);
+    async function handleLogging(){
+        try{
+            if(admin)
+            {
+                dispatch(setAdmin({admin:null}))
+            }
+            else{
+                navigate("/adminLogin");
+            }
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+    }
+    return (
     <div className='flex flex-row items-center p-3 border-b border-black justify-evenly'>
         <div className='flex flex-col items-center bg-blue-950 text-white p-3 text-[20px]'>
             <div className='flex flex-row'>
@@ -15,7 +36,7 @@ export const Header = () => {
             <span className='text-green-950'>Admin</span>
             <span className='text-green-600'>Panel</span>
         </div>
-        <button className='text-[18px] border-2 border-red-700 text-red-700 rounded-[7px] px-3 py-2'>Logout</button>
+        <button className='text-[18px] border-2 border-red-700 text-red-700 rounded-[7px] px-3 py-2' onClick={handleLogging}>{admin?"Logout":"Login"}</button>
     </div>
   )
 }

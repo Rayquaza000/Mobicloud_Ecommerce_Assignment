@@ -29,7 +29,7 @@ export async function checkIfAdminDetailsAreAMatch(req,res,next)
 export function hasAuthority(req,res,next)
 {
     try{
-        if(req.cookie.administrator=="permission granted")
+        if(req.cookies.administrator=="permission granted")
         {
             next();
         }
@@ -39,6 +39,7 @@ export function hasAuthority(req,res,next)
     }
     catch(error)
     {
+        console.log(error);
         return res.status(500).json({"error":error});
     }
 }

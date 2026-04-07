@@ -3,13 +3,13 @@ import { Order_data } from "../Model/orders.model.js";
 export async function getOrders(req,res)
 {
     try{
-        if(req.params.orderStatus=="All")
+        if(req.params.filter=="All")
         {
-            const orders=Order_data.find();
+            const orders=await Order_data.find();
             return res.status(200).json({"message":"All Orders found","orders":orders});
         }
         else{
-            const orders=Order_data.find({orderStatus:req.params.orderStatus});
+            const orders=await Order_data.find({orderStatus:req.params.filter});
             return res.status(200).json({"message":"orders found","orders":orders});
         }
 
@@ -42,9 +42,12 @@ export async function placeOrder(req,res){
 export async function changeOrderStatus(req,res)
 {
     try{
-        const order=Order_data.findOne({_id:req.params.orderId});
-        order.orderStatus=req.body.orderStatus;
-        order.save();
+        const order = await Order_data.findOne({_id:req.params.orderId});
+        if (!order) {
+            return res.status(404).json({"error": "Order not found"});
+        }
+        order.orderStatus = req.body.orderStatus;
+        await order.save();
         return res.status(200).json({"message":"Order status updated"});
     }
     catch(error)

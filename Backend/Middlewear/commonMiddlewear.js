@@ -1,12 +1,10 @@
 import jwt from "jsonwebtoken";
 
-export function verifyJWT(req,res)
-{
-    if(jwt.verify(req.cookies.token,process.env.JWT_SECRET_KEY))
-    {
+export function verifyJWT(req, res, next) {
+    try {
+        jwt.verify(req.cookies.token, process.env.JWT_SECRET_KEY);
         next();
-    }
-    else{
-        return res.status(401).json({"error":"You are not authorized"});
+    } catch (error) {
+        return res.status(401).json({"error": "Invalid or missing JWT"});
     }
 }
