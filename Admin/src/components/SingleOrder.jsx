@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const SingleOrder = ({userId,orderId,orderStatus,orderItems,orderItemPrice,orderItemQuantity,orderTotalPrice}) => {
-    const [sum,setSum]=useState(0);
     return (
     <div className='flex flex-col border border-green-600'>
         <div className='flex flex-row border-b border-b-black'>

@@ -10,6 +10,7 @@ import { Orders } from './pages/Orders.jsx'
 import { Products } from './pages/Products.jsx'
 import { Users } from './pages/Users.jsx'
 import Login from './pages/Login.jsx'
+import { NewProduct } from './pages/NewProduct.jsx'
 
 function App() {
 
@@ -33,6 +34,10 @@ function App() {
         {
           path:"/adminLogin",
           element:<Login/>
+        },
+        {
+          path:"/newProduct",
+          element:<NewProduct/>
         }
       ]
     }

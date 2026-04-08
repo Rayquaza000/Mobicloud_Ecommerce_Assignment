@@ -89,3 +89,20 @@ export async function deleteProduct(req,res)
     }
 
 }
+
+export async function getAllProducts(req,res){
+    try{
+        const products=await Product_data.find();
+        if(products)
+        {
+            return res.status(200).json({"message":"products fetched successfully","products":products});
+        }
+        else{
+            return res.status(404).json({"error":"products fetching failed"});
+        }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
