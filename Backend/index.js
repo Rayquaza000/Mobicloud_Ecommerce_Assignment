@@ -11,7 +11,24 @@ dotenv.config();
 
 const app=new express();
 
-app.use(cors());
+const allowedOrigins = [
+  process.env.CLIENT_URL || "https://mobicloud-ecommerce-client.onrender.com",
+  process.env.ADMIN_URL || "https://mobicloud-ecommerce-admin.onrender.com",
+  "http://localhost:5173"
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
