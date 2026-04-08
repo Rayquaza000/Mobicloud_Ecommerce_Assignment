@@ -4,15 +4,17 @@ import bcrypt from "bcrypt";
 
 export async function checkIfDetailsAreAMatch(req,res,next)
 {
+    console.log("Reached mw function2")
     try{
         if(req.body.userEmail && req.body.password)
         {
             const existingUser=await User_data.findOne({userEmail:req.body.userEmail});
             if(existingUser)
             {
-                if(bcrypt.compareSync(req.body.password,existingUser.password))
+                if(bcrypt.compareSync(req.body.password,existingUser.userPassword))
                 {
                     req.userData=existingUser;
+                    console.log("Reached next")
                     next();
                 }
                 else{

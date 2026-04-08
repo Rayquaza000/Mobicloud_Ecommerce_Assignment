@@ -7,8 +7,11 @@ import MainLayout from './MainLayout.jsx'
 import { RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
 import { createBrowserRouter } from 'react-router-dom'
 import {SingleProduct} from "./pages/SingleProduct.jsx"
+import Cart from './pages/Cart.jsx'
+import Checkout from './pages/Checkout.jsx'
 
 function App() {
 
@@ -29,6 +32,18 @@ function App() {
           path:"/product/:id",
           element:<SingleProduct/>
         },
+        {
+          path:"/signup",
+          element:<Signup/>
+        },
+        {
+          path:"/cart",
+          element:<Cart/>
+        },
+        {
+          path:"/checkout",
+          element:<Checkout/>
+        }
       ]
     }
   ]);

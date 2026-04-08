@@ -7,13 +7,24 @@ const ProductCard = ({id,imgsrc,productName,productPrice,productDescription}) =>
   const navigate=useNavigate()
   async function addOneToCart(){
     try{
-      const response=fetch("http://localhost:8000/addToCart/"+user);
+      const response = await fetch(`http://localhost:8000/addToCart/${user.userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          itemId: id,
+          update: "add"
+        })
+      });
       if(response.ok)
       {
         console.log("Product successfully added to cart")
       }
       else{
-        console.log("Failed to add product to cart");
+        const error = await response.json();
+        console.log("Failed to add product to cart:", error.error);
       }
     }
     catch(error)

@@ -1,4 +1,4 @@
-import brcypt from "bcrypt";
+import bcrypt from "bcrypt";
 import { User_data } from "../Model/users.model.js";
 import jwt from "jsonwebtoken";
 import { Product_data } from "../Model/products.model.js";
@@ -6,11 +6,11 @@ import { Product_data } from "../Model/products.model.js";
 export async function signup(req,res)
 {
     try{
-        const encryptedPassword=brcypt.hashSync(req.body.password,10);
-        let newUser={
+        const hashedPassword=bcrypt.hashSync(req.body.password,10);
+        const newUser={
             userName:req.body.userName,
             userEmail:req.body.userEmail,
-            userPassword:encryptedPassword,
+            userPassword:hashedPassword,
             userCart:{
                 itemIdArray:[],
                 itemsArray:[],
@@ -18,25 +18,27 @@ export async function signup(req,res)
                 quantityArray:[]
             }
         }
-        await User_data.insertOne(newUser);
-        return res.json(201).json({"message":"New User Created"});
+        const user=new User_data(newUser);
+        await user.save();
+        return res.status(200).json({"message":"User created successfully","userId":user._id,"userName":user.userName,"userEmail":user.userEmail,"userCart":user.userCart});
     }
     catch(error)
     {
-        res.status(500).json({"error":error});
+        return res.status(500).json({"error":error});
     }
 }
 
 export async function login(req,res)
 {
     try{
-        const token=jwt.sign({"userEmail":req.body.email},process.env.JWT_SECRET_KEY);
+        const token=jwt.sign({"userId":req.userData.id},process.env.JWT_SECRET_KEY);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,       
-            sameSite: "None"    
+            secure: false,
+            sameSite: "lax"
         });
-        return res.status(200).json({"message":"Login successfull","userID":existingUser._id,"userName":existingUser.userName,"userEmail":existingUser.userEmail,"userCart":existingUser.userCart});
+        res.cookie("user","authenticated");
+        return res.status(200).json({"message":"Login successful","userId":req.userData.id,"userName":req.userData.userName,"userEmail":req.userData.userEmail,"userCart":req.userData.userCart});
     }
     catch(error)
     {
@@ -98,15 +100,15 @@ export async function addToCart(req,res)
     try{
         const productDetails=await Product_data.findOne({_id:req.body.itemId});
         const userDetails= await User_data.findOne({_id:req.params.userid});
-        const index=userDetails.userCart.itemsIdArray.indexOf(req.body.itemId);
-        if(userDetails.userCart.itemsIdArray.includes(req.body.itemId))
+        const index=userDetails.userCart.itemIdArray.indexOf(req.body.itemId);
+        if(userDetails.userCart.itemIdArray.includes(req.body.itemId))
         {
             if(req.body.update=="add" && productDetails.productQuantity>=1)
             {
                 userDetails.userCart.quantityArray[index]+=1;
                 productDetails.productQuantity-=1;
-                userDetails.save();
-                productDetails.save();
+                await userDetails.save();
+                await productDetails.save();
                 return res.status(200).json({"message":"Item quantity updated"});
             }
             else if(req.body.update=="subtract" && userDetails.userCart.quantityArray[index]>0){
@@ -117,16 +119,16 @@ export async function addToCart(req,res)
                 return res.status(200).json({"message":"Item quantity updated"});
             }
             else{
-                return res.status(404).json({"error":"Item out of stock"});
+                return res.status(404).json({"error":"Item out of stock or invalid operation"});
             }
         }
         else{
-            if(productDetails.productQuantity>1)
+            if(productDetails.productQuantity>=1)
             {
                 productDetails.productQuantity-=1;
                 userDetails.userCart.itemIdArray.push(req.body.itemId);
-                userDetails.userCart.itemsArray.push(req.body.itemName);
-                userDetails.userCart.priceOfOneUnitArray.push(req.body.itemPrice);
+                userDetails.userCart.itemsArray.push(productDetails.productName);
+                userDetails.userCart.priceOfOneUnitArray.push(productDetails.productPrice);
                 userDetails.userCart.quantityArray.push(1);
                 await productDetails.save();
                 await userDetails.save();
