@@ -7,7 +7,7 @@ const ProductCard = ({id,imgsrc,productName,productPrice,productDescription}) =>
   const navigate=useNavigate()
   async function addOneToCart(){
     try{
-      const response = await fetch(`http://localhost:8000/addToCart/${user.userId}`, {
+      const response = await fetch(`https://mobicloud-ecommerce-backend.onrender.com/addToCart/${user.userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -32,7 +32,7 @@ export const NewProduct = () => {
                     productDescription:description
                 })
             }
-            const response=await fetch("http://localhost:8000/product",options);
+            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product",options);
             if(response.ok)
             {
                 setMessage("Product added successfully");

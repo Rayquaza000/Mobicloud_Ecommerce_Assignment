@@ -12,7 +12,7 @@ const Login = () => {
     async function handleLogin()
     {
         try{
-            const response=await fetch("http://localhost:8000/adminLogin", {
+            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/adminLogin", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ export const Orders = () => {
     useEffect(()=>{
         async function getOrdersByCategory(){
             try{
-                const response=await fetch("http://localhost:8000/orders/"+statusFilter, {
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/orders/"+statusFilter, {
                     credentials: 'include'
                 });
                 

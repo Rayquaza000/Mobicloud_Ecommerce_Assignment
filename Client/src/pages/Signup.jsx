@@ -19,7 +19,7 @@ const Signup = () => {
                     password:password
                 })
             }
-            const response=await fetch("http://localhost:8000/signup",options);
+            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/signup",options);
             if(response.ok)
             {
                 const json_response = await response.json();

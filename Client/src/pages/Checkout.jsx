@@ -20,7 +20,7 @@ const Checkout = () => {
   const handlePayment = async () => {
     try {
       setPaymentProcessing(true);
-      const response = await fetch("http://localhost:8000/order", {
+      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

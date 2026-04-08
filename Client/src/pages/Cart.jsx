@@ -16,7 +16,7 @@ const Cart = () => {
   const fetchCartData = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8000/cart", {
+      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -37,7 +37,7 @@ const Cart = () => {
 
   const handleQuantityChange = async (itemId, change) => {
     try {
-      const response = await fetch("http://localhost:8000/updateCart", {
+      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/updateCart", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -59,7 +59,7 @@ const Cart = () => {
 
   const handleRemoveItem = async (itemId) => {
     try {
-      const response = await fetch("http://localhost:8000/removeFromCart", {
+      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/removeFromCart", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"

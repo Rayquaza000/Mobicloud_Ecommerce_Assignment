@@ -15,7 +15,7 @@ const [categories,setCategories]=useState([]);
 useEffect(()=>{
     async function fetchProductsByCategory(){
     try{
-        const response=await fetch("http://localhost:8000/products/"+category);
+        const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/products/"+category);
 
         const json_response=await response.json();
         setProducts(json_response.products || []);

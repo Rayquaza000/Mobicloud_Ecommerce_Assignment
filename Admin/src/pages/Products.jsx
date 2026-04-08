@@ -9,7 +9,7 @@ export const Products = () => {
     useEffect(()=>{
         async function getAllProducts(){
             try{
-                const response=await fetch("http://localhost:8000/products");
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/products");
                 if(response.ok)
                 {
                     const json_response=response.json();

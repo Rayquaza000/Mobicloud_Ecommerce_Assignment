@@ -7,7 +7,7 @@ export const Users = () => {
   useEffect(()=>{
     async function getAllUsers(){
       try{
-        const response=await fetch("http://localhost:8000/allUsers");
+        const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/allUsers");
         if(response.ok)
         {
           const json_response=await response.json();

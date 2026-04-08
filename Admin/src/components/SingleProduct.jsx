@@ -25,7 +25,7 @@ export const SingleProduct = ({key,productName,productCategory,productPrice,prod
                     body: JSON.stringify({productName:name,productCategory:category,productImage:image,productPrice:price,productQuantity:quantity}),
                     credentials: 'include'
                 }
-                const response=await fetch("http://localhost:8000/product/"+key,options);
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+key,options);
                 if(response.ok)
                 {
                     const json_response=await response.json();
@@ -50,7 +50,7 @@ export const SingleProduct = ({key,productName,productCategory,productPrice,prod
                     },
                     credentials: 'include'
             }
-            const response=await fetch("http://localhost:8000/product/"+key);
+            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+key);
             if(response.ok)
             {
                 setUpdateList(!updateList);

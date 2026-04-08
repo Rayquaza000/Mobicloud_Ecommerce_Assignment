@@ -23,7 +23,7 @@ const Login = () => {
           password:password
         })
       }
-      const response=await fetch("http://localhost:8000/login",options);
+      const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/login",options);
       if(response.ok)
       {
         const json_response=await response.json();

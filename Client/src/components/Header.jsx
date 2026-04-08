@@ -36,7 +36,7 @@ const Header = () => {
             async function tryLoggingOut()
             {
                 try{
-                    const response=await fetch("http://localhost:8000/logout");
+                    const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/logout");
                     if(response.ok)
                     {
                         console.log(await response.json().message)
