@@ -23,7 +23,7 @@ const Login = () => {
             if(response.ok)
             {
                 const json_response=await response.json();
-                dispatch(setAdmin({admin:json_response.adminName}))
+                dispatch(setAdmin(json_response.adminName))
                 setTimeout(()=>{navigate("/orders")},3000)
             }
             else{
