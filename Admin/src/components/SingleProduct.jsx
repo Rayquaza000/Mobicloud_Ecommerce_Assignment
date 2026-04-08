@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const SingleProduct = ({key,productName,productCategory,productPrice,productQuantity,productImage,updateList,setUpdateList}) => {
+export const SingleProduct = ({productId,productName,productCategory,productPrice,productQuantity,productImage,updateList,setUpdateList}) => {
     const [editButton,setEditButton]=useState("Edit");
     const [editable,setEditable]=useState(false);
     const[name,setName]=useState(productName);
@@ -25,7 +25,7 @@ export const SingleProduct = ({key,productName,productCategory,productPrice,prod
                     body: JSON.stringify({productName:name,productCategory:category,productImage:image,productPrice:price,productQuantity:quantity}),
                     credentials: 'include'
                 }
-                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+key,options);
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+productId,options);
                 if(response.ok)
                 {
                     const json_response=await response.json();
@@ -50,7 +50,7 @@ export const SingleProduct = ({key,productName,productCategory,productPrice,prod
                     },
                     credentials: 'include'
             }
-            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+key);
+            const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+productId, options);
             if(response.ok)
             {
                 setUpdateList(!updateList);
@@ -63,7 +63,7 @@ export const SingleProduct = ({key,productName,productCategory,productPrice,prod
     }
     return (
     <tr>
-        <td contentEditable={editable}>{key}</td>
+        <td contentEditable={editable}>{productId}</td>
         <td contentEditable={editable} onChange={(e)=>{setImage(e.target.value)}}>{image}</td>
         <td contentEditable={editable} onChange={(e)=>{setName(e.target.value)}}>{name}</td>
         <td contentEditable={editable} onChange={(e)=>{setCategory(e.target.value)}}>{category}</td>

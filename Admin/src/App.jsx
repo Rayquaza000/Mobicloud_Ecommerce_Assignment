@@ -11,6 +11,18 @@ import { Products } from './pages/Products.jsx'
 import { Users } from './pages/Users.jsx'
 import Login from './pages/Login.jsx'
 import { NewProduct } from './pages/NewProduct.jsx'
+import { useSelector } from 'react-redux';
+
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const admin = useSelector((state) => state.auth.admin);
+  
+  if (!admin) {
+    return <Login />;
+  }
+  
+  return children;
+};
 
 function App() {
 
@@ -21,23 +33,23 @@ function App() {
       children:[
         {
           path:"/orders",
-          element:<Orders/>
+          element:<ProtectedRoute><Orders/></ProtectedRoute>
         },
         {
           path:"/products",
-          element:<Products/>
+          element:<ProtectedRoute><Products/></ProtectedRoute>
         },
         {
           path:"/users",
-          element:<Users/>
+          element:<ProtectedRoute><Users/></ProtectedRoute>
+        },
+        {
+          path:"/newProduct",
+          element:<ProtectedRoute><NewProduct/></ProtectedRoute>
         },
         {
           path:"/adminLogin",
           element:<Login/>
-        },
-        {
-          path:"/newProduct",
-          element:<NewProduct/>
         }
       ]
     }

@@ -30,7 +30,8 @@ export const NewProduct = () => {
                     productQuantity:quantity,
                     productImage:imageurl,
                     productDescription:description
-                })
+                }),
+                credentials: 'include'
             }
             const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product",options);
             if(response.ok)

@@ -12,15 +12,20 @@ export const Orders = () => {
                 });
                 
                 const json_response=await response.json();
-                if(!response.ok)
+                if(response.ok)
                 {
-                    console.log(json_response.error)
+                    setOrders(json_response.orders || []);
                 }
-                setOrders(json_response.orders);
+                else
+                {
+                    console.log(json_response.error);
+                    setOrders([]); // Clear orders on error
+                }
             }
             catch(error)
             {
                 console.log(error);
+                setOrders([]); // Clear orders on error
             }
         }
         getOrdersByCategory();
@@ -35,7 +40,7 @@ export const Orders = () => {
                 <button className='bg-green-300 border-black border px-3 py-1' onClick={()=>{setStatusFilter("Cancelled")}}>Cancelled</button>
               </div>
               <div className='flex flex-col p-2'>
-                {orders?.map((item)=>{return <SingleOrder userId={item.userId} key={item._id} orderStatus={item.orderStatus} orderItems={item.orderItems} orderItemPrice={item.orderItemPrice} orderItemQuantity={item.orderItemQuantity} orderTotalPrice={item.orderTotalPrice}/>})}
+                {orders?.map((item)=>{return <SingleOrder userId={item.userId} orderId={item._id} key={item._id} orderStatus={item.orderStatus} orderItems={item.orderItems} orderItemPrice={item.orderItemPrice} orderItemQuantity={item.orderItemQuantity} orderTotalPrice={item.orderTotalPrice}/>})}
                 </div>            
             </>
   )

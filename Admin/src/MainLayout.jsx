@@ -1,7 +1,20 @@
 import React from 'react'
 import { Header } from './components/Header'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
 export const MainLayout = () => {
+  const admin = useSelector((state) => state.auth.admin);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If not logged in and not on login page, redirect to login
+    if (!admin && window.location.pathname !== '/adminLogin') {
+      navigate('/adminLogin');
+    }
+  }, [admin, navigate]);
+
   return (
     <div className='flex flex-col h-screen'>
       <Header/>

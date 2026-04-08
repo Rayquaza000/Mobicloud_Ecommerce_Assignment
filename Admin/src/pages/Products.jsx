@@ -9,16 +9,25 @@ export const Products = () => {
     useEffect(()=>{
         async function getAllProducts(){
             try{
-                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/products");
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/products", {
+                    credentials: 'include'
+                });
                 if(response.ok)
                 {
-                    const json_response=response.json();
-                    setProducts(json_response.products);
+                    const json_response=await response.json();
+                    setProducts(json_response.products || []);
+                }
+                else
+                {
+                    const json_response=await response.json();
+                    console.log(json_response.error);
+                    setProducts([]);
                 }
             }
             catch(error)
             {
                 console.log(error);
+                setProducts([]);
             }
         }
         getAllProducts();
@@ -44,7 +53,7 @@ export const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.map(item=>{return <SingleProduct key={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} updateList={updateList} setUpdateList={setUpdateList}/>})}
+                    {products?.map(item=>{return <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} updateList={updateList} setUpdateList={setUpdateList}/>})}
                 </tbody>
             </table>
         </div>

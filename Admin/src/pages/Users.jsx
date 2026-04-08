@@ -7,22 +7,27 @@ export const Users = () => {
   useEffect(()=>{
     async function getAllUsers(){
       try{
-        const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/allUsers");
+        const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/allUsers", {
+          credentials: 'include'
+        });
         if(response.ok)
         {
           const json_response=await response.json();
-          setUsers(json_response.users);
-
+          setUsers(json_response.users || []);
         }
         else{
-          console.log("Users fetching failed");
+          const json_response=await response.json();
+          console.log(json_response.error);
+          setUsers([]);
         }
       }
       catch(error)
       {
         console.log(error);
+        setUsers([]);
       }
     }
+    getAllUsers();
   },[])
   return (
     <>
