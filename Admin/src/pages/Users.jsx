@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SingleUser } from '../components/SingleUser.jsx';
-
+import { useEffect } from 'react';
 export const Users = () => {
 
   const [users,setUsers]=useState([]);
