@@ -1,17 +1,22 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import { setAdmin } from '../features/auth/authSlice'
+import { setAdmin, logout } from '../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    const admin=useSelector((state)=>state.auth.user);
+    const admin=useSelector((state)=>state.auth.admin);
     async function handleLogging(){
         try{
             if(admin)
             {
-                dispatch(setAdmin({admin:null}))
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/logout");
+                if(response.ok)
+                {
+                    console.log(await response.json().message)
+                }
+                dispatch(logout())
             }
             else{
                 navigate("/adminLogin");

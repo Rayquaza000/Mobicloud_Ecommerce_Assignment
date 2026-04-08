@@ -7,7 +7,7 @@ const Login = () => {
     const [password,setPassword]=useState("");
     const dispatch=useDispatch();
     const [message,setMessage]=useState("")
-    const admin=useSelector((state)=>state.auth.user);
+    const admin=useSelector((state)=>state.auth.admin);
     const navigate=useNavigate();
     async function handleLogin()
     {
