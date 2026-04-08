@@ -9,7 +9,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAdmin: (state, action) => {
-      state.admin = action.payload;
+      // Handle both string and object payloads for backward compatibility
+      state.admin = typeof action.payload === 'object' && action.payload.admin 
+        ? action.payload.admin 
+        : action.payload;
     },
     logout: (state) => {
       state.admin = null;
