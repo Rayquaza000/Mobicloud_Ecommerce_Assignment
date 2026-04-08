@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const cartSchema=mongoose.Schema({
+    itemIdArray:{
+        type:Array
+    },
     itemsArray:{
         type: Array,
     },

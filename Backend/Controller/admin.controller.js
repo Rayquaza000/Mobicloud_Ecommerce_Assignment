@@ -29,7 +29,7 @@ export async function sendAllUsers(req,res)
         const allUsers=await User_data.find();
         if(allUsers)
         {
-            return res.status(200).json({"message":"Users successfully fetched"});
+            return res.status(200).json({"message":"Users successfully fetched","users":allUsers});
         }
         else{
             return res.status(404).json({"error":"Data of all users cannot be found"})

@@ -6,14 +6,14 @@ const Home = () => {
 
 const [category,setCategory]=useState("All");
 const [products,setProducts]=useState(null);
-const [categories,setcategories]=useState([]);
+const [categories,setCategories]=useState([]);
 useEffect(()=>{
     async function fetchProductsByCategory(){
     try{
         const response=await fetch("http://localhost:8000/products/"+category);
 
         const json_response=await response.json();
-        setProducts(json_response.products);
+        setProducts(json_response.products || []);
     }
     catch(error)
     {
@@ -24,10 +24,9 @@ fetchProductsByCategory();
 },[category])
 
 useEffect(()=>{
-    products?.forEach(element => {
-        setcategories([...categories,element.productCategory]);
-        console.log(categories);
-    });
+    if (!products?.length) return;
+    const temp = ["All", ...new Set(products.map((product) => product.productCategory))];
+    setCategories(temp);
 },[products])
 
   return (
@@ -36,14 +35,18 @@ useEffect(()=>{
             <span>Filters:</span>
             <span>By category:</span>
             <div className='flex flex-row'>
-                {categories?.map((item,index)=>{return(<FilterButton key={index} cat={item}/>)})}
+                {categories?.map((item, index) => category == item ? (
+                    <FilterButton key={index} cat={item} setCategory={setCategory} colour="bg-blue-700 text-white" />
+                ) : (
+                    <FilterButton key={index} cat={item} setCategory={setCategory} colour="bg-white text-black" />
+                ))}
             </div>
         </div>
         <hr className='border border-white'></hr>
         <div className='flex flex-col'>
             <span>{category}</span>
-            <div className='flex flex-wrap justify-evenly'>
-                {products?.map((item)=>{return(<ProductCard key={item._id} imgsrc={item.productImage} />)})}
+            <div className='flex flex-wrap justify-evenly mt-2'>
+                {products?.map((item)=>{return(<ProductCard key={item._id} id={item._id} imgsrc={item.productImage}  productName={item.productName} productPrice={item.productPrice} productCategory={item.productCategory} productDescription={item.productDescription}/>)})}
                 
             </div>
         </div>

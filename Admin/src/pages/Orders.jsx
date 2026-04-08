@@ -35,7 +35,7 @@ export const Orders = () => {
                 <button className='bg-green-300 border-black border px-3 py-1' onClick={()=>{setStatusFilter("Cancelled")}}>Cancelled</button>
               </div>
               <div className='flex flex-col p-2'>
-                {orders?.map((item)=>{return <SingleOrder userId={item.userId} orderStatus={item.orderStatus} orderItems={item.orderItems} orderItemPrice={item.orderItemPrice} orderItemQuantity={item.orderItemQuantity} orderTotalPrice={item.orderTotalPrice}/>})}
+                {orders?.map((item)=>{return <SingleOrder userId={item.userId} key={item._id} orderStatus={item.orderStatus} orderItems={item.orderItems} orderItemPrice={item.orderItemPrice} orderItemQuantity={item.orderItemQuantity} orderTotalPrice={item.orderTotalPrice}/>})}
                 </div>            
             </>
   )

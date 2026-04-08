@@ -9,10 +9,11 @@ export const NewProduct = () => {
     const [category,setCategory]=useState(null);
     const navigate=useNavigate();
     const [message,setMessage]=useState(null);
+    const [description,setDescription]=useState(null);
     async function addNewProduct()
     {
         try{
-            if(name==null || imageurl==null ||price==null || quantity==null || category==null)
+            if(name==null || imageurl==null ||price==null || quantity==null || category==null || description==null)
             {
                 setMessage("Fill all details");
                 return null;
@@ -22,13 +23,14 @@ export const NewProduct = () => {
                 headers:{
                     "Content-Type":"application/json",
                 },
-                body:{
+                body:JSON.stringify({
                     productName:name,
                     productPrice:price,
                     productCategory:category,
                     productQuantity:quantity,
-                    productImage:imageurl
-                }
+                    productImage:imageurl,
+                    productDescription:description
+                })
             }
             const response=await fetch("http://localhost:8000/product",options);
             if(response.ok)
@@ -58,6 +60,8 @@ export const NewProduct = () => {
         <input type="number" placeholder='price' className='pl-1 border border-black' value={price} onChange={(e)=>{setPrice(e.target.value)}}></input>
         <label>Quantity:</label>
         <input type="number" placeholder='quantity' className='pl-1 border border-black' value={quantity} onChange={(e)=>{setQuantity(e.target.value)}}></input>
+        <label>Description:</label>
+        <input type="text" placeholder="Description" className='pl-1 border border-black' value={description} onChange={(e)=>{setDescription(e.target.value)}}></input>
         <button onClick={addNewProduct}>+Add Product</button>
         <span>{message}</span>
     </>

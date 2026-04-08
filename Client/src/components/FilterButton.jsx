@@ -1,8 +1,9 @@
 import React from 'react'
 
-const FilterButton = ({cat}) => {
+const FilterButton = ({cat,setCategory,colour}) => {
+  const className="flex flex-row items-center justify-center border border-blue-950 p-1 px-2 "+colour;
   return (
-    <div className='flex flex-row items-center justify-center bg-blue-700 text-white border border-blue-950 p-1 px-2'>{cat}</div>
+    <div className={className} onClick={() => setCategory(cat)}>{cat}</div>
   )
 }
 

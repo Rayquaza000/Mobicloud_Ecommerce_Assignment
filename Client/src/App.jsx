@@ -8,6 +8,8 @@ import { RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import { createBrowserRouter } from 'react-router-dom'
+import {SingleProduct} from "./pages/SingleProduct.jsx"
+
 function App() {
 
   const router=createBrowserRouter([
@@ -22,7 +24,11 @@ function App() {
         {
           path:"/login",
           element:<Login/>
-        }
+        },
+        {
+          path:"/product/:id",
+          element:<SingleProduct/>
+        },
       ]
     }
   ]);

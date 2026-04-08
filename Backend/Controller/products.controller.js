@@ -48,7 +48,8 @@ export async function addProduct(req,res)
             productQuantity:req.body.productQuantity,
             productPrice:req.body.productPrice,
             productImage:req.body.productImage,
-            productCategory:req.body.productCategory
+            productCategory:req.body.productCategory,
+            productDescription:req.body.productDescription
         }
         const productAdded=new Product_data(newProduct);
         await productAdded.save();

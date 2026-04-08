@@ -11,11 +11,12 @@ import { hasAuthority } from "../Middlewear/admin.middlewear.js";
 import { sendAllUsers } from "../Controller/admin.controller.js";
 import { logout } from "../Controller/users.controller.js";
 import { adminLogout } from "../Controller/admin.controller.js";
-
+import { addToCart } from "../Controller/users.controller.js";
 export function userRoutes(app){
     app.post("/signup",validateDetails,checkIfUserExists,signup);
     app.post("/login",checkIfDetailsAreAMatch,login);
     app.post("/adminLogin",checkIfAdminDetailsAreAMatch,adminLogin);
+    app.post("/addToCart/:userid",verifyJWT,addToCart);
     app.post("/cart",verifyJWT,displayCart);
     app.patch("/updateCart",verifyJWT,updateCart);
     app.get("/allUsers",verifyJWT,hasAuthority,sendAllUsers);

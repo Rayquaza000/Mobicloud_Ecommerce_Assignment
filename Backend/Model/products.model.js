@@ -22,6 +22,9 @@ const productSchema=mongoose.Schema({
     productCategory:{
         type:String,
         default:"others"
+    },
+    productDescription:{
+        type:String
     }
 
 });
