@@ -69,8 +69,8 @@ export async function updateCart(req,res)
         const userData=await User_data.findOne({_id:req.body.userId});
         if(userData)
         {
-            const index=userData.userCart.itemsIdArray.indexOf(req.body.itemId);
-            userData.userCart.itemsIdArray.slice(index,1);
+            const index=userData.userCart.itemIdArray.indexOf(req.body.itemId);
+            userData.userCart.itemIdArray.slice(index,1);
             userData.userCart.itemsArray.slice(index,1);
             userData.userCart.priceOfOneUnitArray.slice(index,1);
             userData.userCart.quantityArray.slice(index,1);
