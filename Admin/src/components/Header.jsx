@@ -11,7 +11,13 @@ export const Header = () => {
         try{
             if(admin)
             {
-                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/logout");
+                const options={
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                    }
+                }
+                const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/logout",options);
                 if(response.ok)
                 {
                     console.log(await response.json().message)
