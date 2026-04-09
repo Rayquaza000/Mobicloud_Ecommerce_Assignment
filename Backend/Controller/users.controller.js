@@ -70,10 +70,10 @@ export async function updateCart(req,res)
         if(userData)
         {
             const index=userData.userCart.itemIdArray.indexOf(req.body.itemId);
-            userData.userCart.itemIdArray.slice(index,1);
-            userData.userCart.itemsArray.slice(index,1);
-            userData.userCart.priceOfOneUnitArray.slice(index,1);
-            userData.userCart.quantityArray.slice(index,1);
+            userData.userCart.itemIdArray.splice(index,1);
+            userData.userCart.itemsArray.splice(index,1);
+            userData.userCart.priceOfOneUnitArray.splice(index,1);
+            userData.userCart.quantityArray.splice(index,1);
             await userData.save();
             return res.status(200).json({"message":"Cart updated successfully"});
         }
