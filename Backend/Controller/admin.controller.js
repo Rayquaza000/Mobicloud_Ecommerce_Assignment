@@ -7,13 +7,13 @@ export function adminLogin(req,res)
         const token=jwt.sign({"adminEmail":req.adminData.adminEmail},process.env.JWT_SECRET_KEY);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false, 
-            sameSite: "lax"
+            secure: true, 
+            sameSite: "none"
         });
         res.cookie("administrator","permission granted", {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none"
         });
         return res.status(200).json({"message":"Login successful","adminName":req.adminData.adminName,"adminEmail":req.adminData.adminEmail});
     }   

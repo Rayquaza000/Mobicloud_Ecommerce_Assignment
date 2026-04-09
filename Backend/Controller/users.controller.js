@@ -34,10 +34,14 @@ export async function login(req,res)
         const token=jwt.sign({"userId":req.userData.id},process.env.JWT_SECRET_KEY);
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax"
+            secure: true,
+            sameSite: "none"
         });
-        res.cookie("user","authenticated");
+        res.cookie("user","authenticated", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
+        });
         return res.status(200).json({"message":"Login successful","userId":req.userData.id,"userName":req.userData.userName,"userEmail":req.userData.userEmail,"userCart":req.userData.userCart});
     }
     catch(error)
