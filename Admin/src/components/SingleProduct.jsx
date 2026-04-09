@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const SingleProduct = ({productId,productName,productCategory,productPrice,productQuantity,productImage,updateList,setUpdateList}) => {
+export const SingleProduct = ({productId,productName,productCategory,productPrice,productQuantity,productImage,productDescription,updateList,setUpdateList}) => {
     const [editButton,setEditButton]=useState("Edit");
     const [editable,setEditable]=useState(false);
     const[name,setName]=useState(productName);
@@ -8,6 +8,7 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
     const [price,setPrice]=useState(productPrice);
     const [quantity,setQuantity]=useState(productQuantity);
     const [image,setImage]=useState(productImage);
+    const [description,setDescription]=useState(productDescription);
     async function handleEdit()
     {
         if(editButton=="Edit")
@@ -22,7 +23,7 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
                     headers:{
                         'Content-Type':"application/json"
                     },
-                    body: JSON.stringify({productName:name,productCategory:category,productImage:image,productPrice:price,productQuantity:quantity}),
+                    body: JSON.stringify({productName:name,productCategory:category,productImage:image,productPrice:price,productQuantity:quantity,productDescription:description}),
                     credentials: 'include'
                 }
                 const response=await fetch("https://mobicloud-ecommerce-backend.onrender.com/product/"+productId,options);
@@ -86,6 +87,10 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
                 <strong>Image:</strong> 
                 {editable ? <input value={image} onChange={(e)=>setImage(e.target.value)} className='border p-1 w-full' /> : image}
             </div>
+            <div className='mb-2'>
+                <strong>Description:</strong> 
+                {editable ? <input value={description} onChange={(e)=>setDescription(e.target.value)} className='border p-1 w-full' /> : description}
+            </div>
             <div className='flex gap-2'>
                 <button onClick={handleEdit} className='bg-blue-500 text-white px-3 py-1 rounded'>{editButton}</button>
                 <button onClick={handleDelete} className='bg-red-500 text-white px-3 py-1 rounded'>Delete</button>
@@ -109,6 +114,9 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
             </td>
             <td className='border border-gray-300 p-2'>
                 {editable ? <input value={quantity} onChange={(e)=>setQuantity(e.target.value)} className='w-full' /> : quantity}
+            </td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={description} onChange={(e)=>setDescription(e.target.value)} className='w-full' /> : description}
             </td>
             <td className='border border-gray-300 p-2'><button onClick={handleEdit} className='bg-blue-500 text-white px-2 py-1 rounded'>Edit</button></td>
             <td className='border border-gray-300 p-2'><button onClick={handleDelete} className='bg-red-500 text-white px-2 py-1 rounded'>Delete</button></td>

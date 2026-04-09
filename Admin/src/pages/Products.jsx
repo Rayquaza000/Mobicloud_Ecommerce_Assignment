@@ -44,7 +44,7 @@ export const Products = () => {
             {/* Mobile view - cards */}
             <div className='block sm:hidden space-y-4'>
                 {products?.map(item => (
-                    <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} updateList={updateList} setUpdateList={setUpdateList}/>
+                    <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} productDescription={item.productDescription} updateList={updateList} setUpdateList={setUpdateList}/>
                 ))}
             </div>
 
@@ -53,14 +53,17 @@ export const Products = () => {
                 <thead>
                     <tr className='bg-gray-100'>
                         <th className='border border-gray-300 p-2'>ProductID</th>
+                        <th className='border border-gray-300 p-2'>Product Image</th>
                         <th className='border border-gray-300 p-2'>Product Name</th>
                         <th className='border border-gray-300 p-2'>Category</th>
                         <th className='border border-gray-300 p-2'>Price</th>
                         <th className='border border-gray-300 p-2'>Available Quantity</th>
+                        <th className='border border-gray-300 p-2'>Description</th>
+                        <th className='border border-gray-300 p-2'>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.map(item=>{return <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} updateList={updateList} setUpdateList={setUpdateList}/>})}
+                    {products?.map(item=>{return <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} productDescription={item.productDescription} updateList={updateList} setUpdateList={setUpdateList}/>})}
                 </tbody>
             </table>
         </div>

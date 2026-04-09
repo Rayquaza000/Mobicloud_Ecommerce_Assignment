@@ -63,12 +63,13 @@ export async function addProduct(req,res)
 export async function updateProduct(req,res)
 {
     try{
-        const findProduct=Product_data.findOne({_id:req.params.productId});
+        const findProduct=await Product_data.findOne({_id:req.params.productId});
         findProduct.productName=req.body.productName;
         findProduct.productQuantity=req.body.productQuantity;
         findProduct.productPrice=req.body.productPrice;
         findProduct.productImage=req.body.productImage;
         findProduct.productCategory=req.body.productCategory;
+        findProduct.productDescription=req.body.productDescription;
         await findProduct.save();
         return res.status(200).json({"message":"Product updated successfully"});
     }
