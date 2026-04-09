@@ -12,7 +12,7 @@ dotenv.config();
 const app=new express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || "https://mobicloud-ecommerce-client.onrender.com",
+  process.env.CLIENT_URL || "https://mobicloud-ecommerce-assignment.onrender.com",
   process.env.ADMIN_URL || "https://mobicloud-ecommerce-admin.onrender.com",
   "http://localhost:5173"
 ];
