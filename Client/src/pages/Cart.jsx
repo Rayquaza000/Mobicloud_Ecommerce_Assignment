@@ -60,7 +60,7 @@ const Cart = () => {
   const handleRemoveItem = async (itemId) => {
     try {
       const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/updateCart", {
-        method: "PATCH",
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
