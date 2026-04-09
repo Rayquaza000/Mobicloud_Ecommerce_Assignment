@@ -11,7 +11,7 @@ const SingleOrder = ({userId,orderId,orderStatus,orderItems,orderItemPrice,order
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: changeStatusTo }),
+                body: JSON.stringify({ orderStatus: changeStatusTo }),
                 credentials: 'include'
             });
             
