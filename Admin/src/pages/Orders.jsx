@@ -32,7 +32,7 @@ export const Orders = () => {
     },[statusFilter]);
   return (
             <>
-              <div className='flex flex-row px-2 py-3 justify-evenly mt-3'>
+              <div className='flex flex-wrap gap-2 px-2 py-3 justify-center sm:justify-start mt-3'>
                 <button className='bg-green-300 border-black border px-3 py-1' onClick={()=>{setStatusFilter("All")}}>All</button>
                 <button className='bg-green-300 border-black border px-3 py-1' onClick={()=>{setStatusFilter("Pending")}}>Pending</button>
                 <button className='bg-green-300 border-black border px-3 py-1' onClick={()=>{setStatusFilter("Shipped")}}>Shipped</button>

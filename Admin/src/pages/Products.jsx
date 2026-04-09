@@ -37,19 +37,26 @@ export const Products = () => {
     }
   return (
     <>
-        <div className='flex flex-row '>
-            <button onClick={handleNewProduct}>+New Product</button>
-            
+        <div className='flex flex-col sm:flex-row p-2 sm:p-4'>
+            <button onClick={handleNewProduct} className='mb-4 sm:mb-0 sm:mr-4 bg-blue-500 text-white px-4 py-2 rounded w-full sm:w-auto'>+New Product</button>
         </div>
-        <div className='flex flex-col flex-1'>
-            <table>
+        <div className='flex flex-col flex-1 p-2 sm:p-4'>
+            {/* Mobile view - cards */}
+            <div className='block sm:hidden space-y-4'>
+                {products?.map(item => (
+                    <SingleProduct key={item._id} productId={item._id} productName={item.productName} productQuantity={item.productQuantity} productPrice={item.productPrice} productCategory={item.productCategory} productImage={item.productImage} updateList={updateList} setUpdateList={setUpdateList}/>
+                ))}
+            </div>
+
+            {/* Desktop view - table */}
+            <table className='hidden sm:table w-full border-collapse border border-gray-300'>
                 <thead>
-                    <tr>
-                        <th>ProductID</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Available Quantity</th>
+                    <tr className='bg-gray-100'>
+                        <th className='border border-gray-300 p-2'>ProductID</th>
+                        <th className='border border-gray-300 p-2'>Product Name</th>
+                        <th className='border border-gray-300 p-2'>Category</th>
+                        <th className='border border-gray-300 p-2'>Price</th>
+                        <th className='border border-gray-300 p-2'>Available Quantity</th>
                     </tr>
                 </thead>
                 <tbody>

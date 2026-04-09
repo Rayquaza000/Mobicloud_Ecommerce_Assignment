@@ -31,17 +31,25 @@ export const Users = () => {
   },[])
   return (
     <>
-      <table>
+      {/* Mobile view - cards */}
+      <div className='block sm:hidden p-2 space-y-4'>
+        {users.map((item)=>{
+          return(<SingleUser key={item._id} name={item.userName} email={item.userEmail} id={item._id}/>)
+        })}
+      </div>
+
+      {/* Desktop view - table */}
+      <table className='hidden sm:table w-full border-collapse border border-gray-300'>
         <thead>
-          <tr>
-            <th>UserID</th>
-            <th>User Name</th>
-            <th>User Email</th>
+          <tr className='bg-gray-100'>
+            <th className='border border-gray-300 p-2'>UserID</th>
+            <th className='border border-gray-300 p-2'>User Name</th>
+            <th className='border border-gray-300 p-2'>User Email</th>
           </tr>
         </thead>
         <tbody>
           {users.map((item)=>{
-            return(<SingleUser key={item._id} name={item.userName} email={item.userEmail}/>)
+            return(<SingleUser key={item._id} name={item.userName} email={item.userEmail} id={item._id}/>)
           })}
         </tbody>
       </table>

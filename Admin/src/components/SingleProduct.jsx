@@ -62,15 +62,57 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
         }
     }
     return (
-    <tr>
-        <td contentEditable={editable}>{productId}</td>
-        <td contentEditable={editable} onChange={(e)=>{setImage(e.target.value)}}>{image}</td>
-        <td contentEditable={editable} onChange={(e)=>{setName(e.target.value)}}>{name}</td>
-        <td contentEditable={editable} onChange={(e)=>{setCategory(e.target.value)}}>{category}</td>
-        <td contentEditable={editable} onChange={(e)=>{setPrice(e.target.value)}}>{price}</td>
-        <td contentEditable={editable} onChange={(e)=>{setQuantity(e.target.value)}}>{quantity}</td>
-        <td><button onClick={handleEdit}>{editButton}</button></td>
-        <td><button onClick={handleDelete}>Delete</button></td>
-    </tr>
+    <>
+        {/* Mobile card view */}
+        <div className='block sm:hidden border border-gray-300 p-4 rounded mb-4'>
+            <div className='mb-2'><strong>ID:</strong> {productId}</div>
+            <div className='mb-2'>
+                <strong>Name:</strong> 
+                {editable ? <input value={name} onChange={(e)=>setName(e.target.value)} className='border p-1 w-full' /> : name}
+            </div>
+            <div className='mb-2'>
+                <strong>Category:</strong> 
+                {editable ? <input value={category} onChange={(e)=>setCategory(e.target.value)} className='border p-1 w-full' /> : category}
+            </div>
+            <div className='mb-2'>
+                <strong>Price:</strong> 
+                {editable ? <input value={price} onChange={(e)=>setPrice(e.target.value)} className='border p-1 w-full' /> : price}
+            </div>
+            <div className='mb-2'>
+                <strong>Quantity:</strong> 
+                {editable ? <input value={quantity} onChange={(e)=>setQuantity(e.target.value)} className='border p-1 w-full' /> : quantity}
+            </div>
+            <div className='mb-2'>
+                <strong>Image:</strong> 
+                {editable ? <input value={image} onChange={(e)=>setImage(e.target.value)} className='border p-1 w-full' /> : image}
+            </div>
+            <div className='flex gap-2'>
+                <button onClick={handleEdit} className='bg-blue-500 text-white px-3 py-1 rounded'>{editButton}</button>
+                <button onClick={handleDelete} className='bg-red-500 text-white px-3 py-1 rounded'>Delete</button>
+            </div>
+        </div>
+
+        {/* Desktop table row view */}
+        <tr className='hidden sm:table-row'>
+            <td className='border border-gray-300 p-2'>{productId}</td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={image} onChange={(e)=>setImage(e.target.value)} className='w-full' /> : image}
+            </td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={name} onChange={(e)=>setName(e.target.value)} className='w-full' /> : name}
+            </td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={category} onChange={(e)=>setCategory(e.target.value)} className='w-full' /> : category}
+            </td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={price} onChange={(e)=>setPrice(e.target.value)} className='w-full' /> : price}
+            </td>
+            <td className='border border-gray-300 p-2'>
+                {editable ? <input value={quantity} onChange={(e)=>setQuantity(e.target.value)} className='w-full' /> : quantity}
+            </td>
+            <td className='border border-gray-300 p-2'><button onClick={handleEdit} className='bg-blue-500 text-white px-2 py-1 rounded'>Edit</button></td>
+            <td className='border border-gray-300 p-2'><button onClick={handleDelete} className='bg-red-500 text-white px-2 py-1 rounded'>Delete</button></td>
+        </tr>
+    </>
   )
 }

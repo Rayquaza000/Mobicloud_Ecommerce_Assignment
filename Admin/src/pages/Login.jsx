@@ -39,19 +39,21 @@ const Login = () => {
         }
     }
   return (
-     <div className='flex flex-col items-center'>
-        { !admin ? (<><span>Login</span>
-        <label>Email:</label>
-        <input type="email" placeholder='Email' className='pl-1 border border-black' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
-        <label className='mt-3'>Password:</label>
-        <input type="password" placeholder="Password" className='pl-1 border border-black' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-        <button className='border border-black px-3 py-1 mt-3' onClick={handleLogin}>Login</button>
-        <span>{message}</span>
-        </>
-        ):
-        (admin && <span>You have logged in as {admin}</span>)}
+     <div className='flex flex-col items-center justify-center min-h-screen px-4 py-8'>
+        { !admin ? (
+          <div className='w-full max-w-sm bg-white p-6 border border-gray-300 rounded shadow-sm'>
+            <h1 className='text-2xl font-bold mb-4 text-center'>Login</h1>
+            <label className='block mb-2 text-sm sm:text-base'>Email:</label>
+            <input type="email" placeholder='Email' className='pl-2 border border-black w-full py-2 mb-4' value={email} onChange={(e)=>{setEmail(e.target.value)}} />
+            <label className='block mb-2 text-sm sm:text-base'>Password:</label>
+            <input type="password" placeholder="Password" className='pl-2 border border-black w-full py-2 mb-4' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+            <button className='border border-black px-4 py-2 w-full bg-blue-600 text-white' onClick={handleLogin}>Login</button>
+            {message && <div className='mt-4 text-red-600 text-sm'>{message}</div>}
+          </div>
+        ) : (
+          <span className='text-center'>You have logged in as {admin}</span>
+        )}
     </div>
-    
   )
 }
 

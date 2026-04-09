@@ -56,9 +56,9 @@ const Header = () => {
         }
     }
     return (
-    <header className='flex flex-row p-6 text-2xl font-bold text-white items-center'>
-        <div className='flex flex-col'>
-            <div className='flex flex-row'>
+    <header className='flex flex-col sm:flex-row p-2 sm:p-6 text-lg sm:text-2xl font-bold text-white items-center gap-2 sm:gap-0'>
+        <div className='flex flex-col text-center sm:text-left'>
+            <div className='flex flex-row justify-center sm:justify-start'>
                 <span className='text-[#17375E]'>Mobi</span>
                 <span>Cloud</span>
             </div>
@@ -66,26 +66,26 @@ const Header = () => {
             <span>Assignment</span>
         </div>
 
-        <div className='flex flex-row mx-auto'>
+        <div className='flex flex-col sm:flex-row mx-auto w-full sm:w-auto gap-2'>
         <input 
           type="text" 
           placeholder="Search by title or category" 
-          className='border border-black bg-[#f2f2f2] text-black text-[18px] pl-1.5 w-100'
+          className='border border-black bg-[#f2f2f2] text-black text-sm sm:text-[18px] pl-1.5 w-full sm:w-80'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={handleKeyPress}
         />
         <button 
-          className='bg-[#f2f2f2] text-black text-[18px] p-1.5 border-black border'
+          className='bg-[#f2f2f2] text-black text-sm sm:text-[18px] p-1.5 border-black border w-full sm:w-auto'
           onClick={handleSearch}
         >
           Search
         </button>
         </div>
-        <div className="flex flex-row justify-evenly items-center bg-blue-500 p-1 border border-black text-[20px] font-normal">
-            <button className='border border-black text-black font-normal bg-gray-400 m-1 p-1' onClick={handleLogging}>{user?"Logout":"Login"}</button>
-            <div className='bg-blue-800 border border-blue-950 m-1 p-1'>{user?user.userName:"Profile"}</div>
-            <div className='bg-blue-800 border border-blue-950 m-1 p-1' onClick={openCart}>Cart</div>
+        <div className="flex flex-row justify-center sm:justify-evenly items-center bg-blue-500 p-1 border border-black text-sm sm:text-[20px] font-normal w-full sm:w-auto">
+            <button className='border border-black text-black font-normal bg-gray-400 m-1 p-1 text-xs sm:text-sm' onClick={handleLogging}>{user?"Logout":"Login"}</button>
+            <div className='bg-blue-800 border border-blue-950 m-1 p-1 text-xs sm:text-sm'>{user?user.userName:"Profile"}</div>
+            <div className='bg-blue-800 border border-blue-950 m-1 p-1 text-xs sm:text-sm' onClick={openCart}>Cart</div>
         </div>
     </header>
 

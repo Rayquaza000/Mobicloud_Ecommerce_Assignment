@@ -53,11 +53,11 @@ useEffect(()=>{
 }, [products, searchQuery])
 
   return (
-    <div className="flex-1 flex-col">
-        <div className='flex flex-col'>
-            <span>Filters:</span>
-            <span>By category:</span>
-            <div className='flex flex-row'>
+    <div className="flex-1 flex-col px-2 sm:px-4">
+        <div className='flex flex-col mb-4'>
+            <span className='text-sm sm:text-base'>Filters:</span>
+            <span className='text-sm sm:text-base'>By category:</span>
+            <div className='flex flex-wrap gap-2'>
                 {categories?.map((item, index) => category == item ? (
                     <FilterButton key={index} cat={item} setCategory={setCategory} colour="bg-blue-700 text-white" />
                 ) : (
@@ -65,14 +65,14 @@ useEffect(()=>{
                 ))}
             </div>
         </div>
-        <hr className='border border-white'></hr>
+        <hr className='border border-white mb-4'></hr>
         <div className='flex flex-col'>
-            <span>{searchQuery ? `Search: ${searchQuery}` : category}</span>
-            <div className='flex flex-wrap justify-evenly mt-2'>
+            <span className='text-sm sm:text-base mb-2'>{searchQuery ? `Search: ${searchQuery}` : category}</span>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {filteredProducts?.length > 0 ? (
                     filteredProducts.map((item)=>{return(<ProductCard key={item._id} id={item._id} imgsrc={item.productImage}  productName={item.productName} productPrice={item.productPrice} productCategory={item.productCategory} productDescription={item.productDescription}/>)})
                 ) : (
-                    <p>No products found.</p>
+                    <p className='col-span-full text-center'>No products found.</p>
                 )}
             </div>
         </div>

@@ -37,17 +37,21 @@ const Signup = () => {
         }
     }
     return (
-    <div className='flex flex-col flex-1'>
-        <span>Signup</span>
-        <label>Name:</label>
-        <input type="text" className='border border-black' value={name} onChange={(e)=>{setName(e.target.value)}}></input>
-        <label>Email:</label>
-        <input type="email" className='border border-black' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
-        <label>Password:</label>
-        <input type="password" className='border border-black' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-        <button onClick={handleSignup}>Signup</button>
-        <span>Already a user?</span>
-        <span onClick={() => navigate("/login")}>Login</span>
+    <div className='flex flex-col flex-1 items-center justify-center px-4'>
+        <span className='text-xl sm:text-2xl mb-4'>Signup</span>
+        <div className='w-full max-w-sm'>
+            <label className='block mb-2 text-sm sm:text-base'>Name:</label>
+            <input type="text" className='border border-black w-full mb-4 p-2' value={name} onChange={(e)=>{setName(e.target.value)}}></input>
+            <label className='block mb-2 text-sm sm:text-base'>Email:</label>
+            <input type="email" className='border border-black w-full mb-4 p-2' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
+            <label className='block mb-2 text-sm sm:text-base'>Password:</label>
+            <input type="password" className='border border-black w-full mb-4 p-2' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+            <button className='w-full p-2 mb-4 border border-black' onClick={handleSignup}>Signup</button>
+            <div className='text-center'>
+                <span className='text-sm sm:text-base'>Already a user?</span><br/>
+                <span className='text-blue-600 cursor-pointer text-sm sm:text-base' onClick={() => navigate("/login")}>Login</span>
+            </div>
+        </div>
     </div>
   )
 }

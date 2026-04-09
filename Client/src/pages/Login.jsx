@@ -42,15 +42,19 @@ const Login = () => {
     }
   }
   return (
-    <div className='flex flex-col flex-1 items-center'>
-      <span>Login</span>
-      <label>Email:</label>
-      <input type="email" placeholder="email" className='border border-black pl-1' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
-      <label>Password:</label>
-      <input type="password" placeholder="******" className='border border-black pl-1' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-      <button className='border border-black' onClick={handleLogin}>Login</button>
-      <span>New User?</span>
-      <span onClick={()=>{navigate("/signup")}}>Signup</span>
+    <div className='flex flex-col flex-1 items-center justify-center px-4'>
+      <span className='text-xl sm:text-2xl mb-4'>Login</span>
+      <div className='w-full max-w-sm'>
+        <label className='block mb-2 text-sm sm:text-base'>Email:</label>
+        <input type="email" placeholder="email" className='border border-black pl-1 w-full mb-4 p-2' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
+        <label className='block mb-2 text-sm sm:text-base'>Password:</label>
+        <input type="password" placeholder="******" className='border border-black pl-1 w-full mb-4 p-2' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+        <button className='border border-black w-full p-2 mb-4' onClick={handleLogin}>Login</button>
+        <div className='text-center'>
+          <span className='text-sm sm:text-base'>New User?</span><br/>
+          <span className='text-blue-600 cursor-pointer text-sm sm:text-base' onClick={()=>{navigate("/signup")}}>Signup</span>
+        </div>
+      </div>
     </div>
   )
 }

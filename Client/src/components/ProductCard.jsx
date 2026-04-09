@@ -37,16 +37,16 @@ const ProductCard = ({id,imgsrc,productName,productPrice,productDescription}) =>
     navigate("/product/"+id);
   }
   return (
-    <div className='flex flex-col p-2 bg-blue-300 border border-white w-54' onClick={navigateToProductPage}>
-        <img src={imgsrc} className='w-50 h-60'></img>
-        <div className='flex flex-row mt-1 justify-between'>
-            <span className='bg-white rounded-[5px] p-1 px-2'>{productName}</span>
+    <div className='flex flex-col p-2 bg-blue-300 border border-white w-full max-w-xs mx-auto' onClick={navigateToProductPage}>
+        <img src={imgsrc} className='w-full h-40 sm:h-60 object-cover'></img>
+        <div className='flex flex-row mt-1 justify-between text-sm sm:text-base'>
+            <span className='bg-white rounded-[5px] p-1 px-2 truncate'>{productName}</span>
             <span>Rs. {productPrice}/-</span>
         </div>
-        <button className='bg-gray-800 border-2 border-black p-1 px-2 text-white mt-2' onClick={(e)=>{e.stopPropagation();addOneToCart();}}>Add to cart</button>
+        <button className='bg-gray-800 border-2 border-black p-1 px-2 text-white mt-2 text-sm sm:text-base' onClick={(e)=>{e.stopPropagation();addOneToCart();}}>Add to cart</button>
         <div className='flex flex-col mt-1'>
-            <span className='font-bold '>Description</span>
-            <span className='text-wrap'>{productDescription}</span>
+            <span className='font-bold text-sm sm:text-base'>Description</span>
+            <span className='text-wrap text-xs sm:text-sm'>{productDescription}</span>
         </div>  
     </div>
   )

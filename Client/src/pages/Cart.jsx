@@ -92,13 +92,34 @@ const Cart = () => {
   const total = quantityArray.reduce((sum, qty, index) => sum + qty * priceOfOneUnitArray[index], 0);
 
   return (
-    <div className='flex flex-col flex-1 p-4'>
-      <h1 className='text-2xl font-bold mb-4'>Your Cart</h1>
+    <div className='flex flex-col flex-1 p-2 sm:p-4'>
+      <h1 className='text-xl sm:text-2xl font-bold mb-4'>Your Cart</h1>
       {itemIdArray.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
-          <table className='w-full border-collapse border border-gray-300 mb-4'>
+          {/* Mobile view - cards */}
+          <div className='block sm:hidden space-y-4 mb-4'>
+            {itemIdArray.map((id, index) => (
+              <div key={id} className='border border-gray-300 p-4 rounded'>
+                <div className='font-semibold mb-2'>{itemsArray[index]}</div>
+                <div className='text-sm mb-2'>Price: Rs. {priceOfOneUnitArray[index]}</div>
+                <div className='flex items-center justify-between mb-2'>
+                  <span className='text-sm'>Quantity:</span>
+                  <div className='flex items-center'>
+                    <button className='bg-blue-500 text-white px-2 py-1 mr-1' onClick={() => handleQuantityChange(id, -1)}>−</button>
+                    <span className='mx-2'>{quantityArray[index]}</span>
+                    <button className='bg-blue-500 text-white px-2 py-1 ml-1' onClick={() => handleQuantityChange(id, 1)}>+</button>
+                  </div>
+                </div>
+                <div className='text-sm mb-2'>Total: Rs. {quantityArray[index] * priceOfOneUnitArray[index]}</div>
+                <button className='bg-red-500 text-white px-3 py-1 w-full' onClick={() => handleRemoveItem(id)}>Remove</button>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop view - table */}
+          <table className='hidden sm:table w-full border-collapse border border-gray-300 mb-4'>
             <thead>
               <tr className='bg-gray-100'>
                 <th className='border border-gray-300 p-2'>Item</th>
@@ -129,8 +150,8 @@ const Cart = () => {
           <div className='mt-4 text-right'>
             <strong className='text-lg'>Total: Rs. {total}</strong>
           </div>
-          <div className='mt-6 flex justify-end gap-4'>
-            <button className='bg-green-500 text-white px-6 py-2 rounded' onClick={() => navigate("/checkout", { state: { total, cart } })}>Proceed to Checkout</button>
+          <div className='mt-6 flex justify-center sm:justify-end'>
+            <button className='bg-green-500 text-white px-6 py-2 rounded w-full sm:w-auto' onClick={() => navigate("/checkout", { state: { total, cart } })}>Proceed to Checkout</button>
           </div>
         </>
       )}
