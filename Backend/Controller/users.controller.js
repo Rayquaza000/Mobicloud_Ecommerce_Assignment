@@ -66,7 +66,7 @@ export async function displayCart(req,res)
 export async function updateCart(req,res)
 {
     try{
-        const userData=await User_data.findOne({_id:req.body.id});
+        const userData=await User_data.findOne({_id:req.body.userId});
         if(userData)
         {
             const index=userData.userCart.itemsIdArray.indexOf(req.body.itemId);
