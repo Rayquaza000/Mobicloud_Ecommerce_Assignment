@@ -7,6 +7,9 @@ export function verifyJWT(req, res, next) {
             console.log("Reached verification")
         next();
         }
+        else{
+            return res.status(401).json({"error": "jwt verification failed"});
+        }
     } catch (error) {
         return res.status(401).json({"error": "Invalid or missing JWT"});
     }

@@ -73,6 +73,9 @@ const Cart = () => {
       if (response.ok) {
         fetchCartData();
       }
+      else{
+        console.log(await response.json());
+      }
     } catch (error) {
       console.log("Failed to remove item:", error);
     }
