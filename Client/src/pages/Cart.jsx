@@ -37,8 +37,8 @@ const Cart = () => {
 
   const handleQuantityChange = async (itemId, change) => {
     try {
-      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/updateCart", {
-        method: "PATCH",
+      const response = await fetch("https://mobicloud-ecommerce-backend.onrender.com/addToCart/"+user.userId, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
