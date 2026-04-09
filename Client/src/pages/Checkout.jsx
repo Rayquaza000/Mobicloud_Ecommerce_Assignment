@@ -106,7 +106,7 @@ const Checkout = () => {
       </div>
 
       <div className='mb-6'>
-        <h2 className='text-lg sm:text-xl font-bold mb-2'>Shipping Address</h2>
+        <h2 className='text-lg sm:text-xl font-bold mb-2'>Shipping to:</h2>
         <div className='border border-gray-300 p-4 bg-gray-50'>
           <p><strong>Name:</strong> {user.userName}</p>
           <p><strong>Email:</strong> {user.userEmail}</p>
