@@ -110,7 +110,6 @@ const Checkout = () => {
         <div className='border border-gray-300 p-4 bg-gray-50'>
           <p><strong>Name:</strong> {user.userName}</p>
           <p><strong>Email:</strong> {user.userEmail}</p>
-          <p><em>(Add address field in database later)</em></p>
         </div>
       </div>
 
