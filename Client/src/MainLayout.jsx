@@ -9,7 +9,7 @@ const MainLayout = () => {
         <Header/>
         <hr className='border border-white'></hr>
         <div>
-            <span className="text-24 ml-4 underline" onClick={()=>{navigate("/")}}>Home</span>
+            <span className="text-[24px] ml-4 underline" onClick={()=>{navigate("/")}}>Home</span>
         </div>
         <hr className='border border-white'></hr>
         <Outlet />
