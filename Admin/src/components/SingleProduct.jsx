@@ -100,7 +100,7 @@ export const SingleProduct = ({productId,productName,productCategory,productPric
         {/* Desktop table row view */}
         <tr className='hidden sm:table-row'>
             <td className='border border-gray-300 p-2'>{productId}</td>
-            <td className='border border-gray-300 p-2'>
+            <td className='border border-gray-300 p-2 max-w-80 overflow-hidden text-ellipsis'>
                 {editable ? <input value={image} onChange={(e)=>setImage(e.target.value)} className='w-full' /> : image}
             </td>
             <td className='border border-gray-300 p-2'>
