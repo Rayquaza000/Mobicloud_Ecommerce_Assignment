@@ -43,6 +43,9 @@ const Header = () => {
                         dispatch(setUser(null));
                         navigate("/");
                     }
+                    else{
+                        console.log("Server response not ok")
+                    }
                 }
                 catch(error)
                 {
