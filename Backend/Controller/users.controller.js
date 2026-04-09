@@ -78,7 +78,7 @@ export async function updateCart(req,res)
             return res.status(200).json({"message":"Cart updated successfully"});
         }
         else{
-            return res.status(500).json({"error":"user with id "+req.body.id+" could not be found"});
+            return res.status(500).json({"error":"user with id "+req.body.userId+" could not be found"});
         }
     }
     catch(error)
