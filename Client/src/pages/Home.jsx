@@ -13,7 +13,6 @@ const Home = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  // ✅ Fetch ALL products once (for categories + default view)
   useEffect(() => {
     async function fetchAllProducts() {
       try {
@@ -40,7 +39,6 @@ const Home = () => {
     fetchAllProducts();
   }, []);
 
-  // ✅ Handle category filtering (frontend side)
   useEffect(() => {
     if (!products.length) return;
 
@@ -54,7 +52,6 @@ const Home = () => {
     }
   }, [category, products]);
 
-  // ✅ Handle search filtering
   useEffect(() => {
     if (!products.length) return;
 
