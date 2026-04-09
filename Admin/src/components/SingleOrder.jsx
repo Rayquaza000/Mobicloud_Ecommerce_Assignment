@@ -19,7 +19,7 @@ const SingleOrder = ({userId,orderId,orderStatus,orderItems,orderItemPrice,order
                 setOStatus(changeStatusTo);
                 setEditable(false);
             } else {
-                console.log('Failed to update order status');
+                console.log(await response.json().error);
             }
         } catch (error) {
             console.log('Error updating order status:', error);
