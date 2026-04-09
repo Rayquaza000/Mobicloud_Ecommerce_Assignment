@@ -13,64 +13,67 @@ const Home = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  // ✅ Fetch ALL categories once
+  // ✅ Fetch ALL products once (for categories + default view)
   useEffect(() => {
-    async function fetchAllCategories() {
+    async function fetchAllProducts() {
       try {
         const res = await fetch("https://mobicloud-ecommerce-backend.onrender.com/products/All");
         const data = await res.json();
 
+        const allProducts = data.products || [];
+
+        setProducts(allProducts);
+        setFilteredProducts(allProducts);
+
         const uniqueCategories = [
           "All",
-          ...new Set(data.products.map(p => p.productCategory))
+          ...new Set(allProducts.map(p => p.productCategory))
         ];
 
         setCategories(uniqueCategories);
+
       } catch (err) {
         console.log(err);
       }
     }
 
-    fetchAllCategories();
+    fetchAllProducts();
   }, []);
 
-  // ✅ Fetch products based on selected category
+  // ✅ Handle category filtering (frontend side)
   useEffect(() => {
-    async function fetchProductsByCategory() {
-      try {
-        const response = await fetch(
-          "https://mobicloud-ecommerce-backend.onrender.com/products/" + category
-        );
+    if (!products.length) return;
 
-        const json_response = await response.json();
-        setProducts(json_response.products || []);
-      } catch (error) {
-        console.log(error);
-      }
+    if (category === "All") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) => product.productCategory === category
+      );
+      setFilteredProducts(filtered);
     }
+  }, [category, products]);
 
-    fetchProductsByCategory();
-  }, [category]);
-
-  // ✅ Apply search filtering
+  // ✅ Handle search filtering
   useEffect(() => {
-    if (!products?.length) {
-      setFilteredProducts([]);
-      return;
-    }
+    if (!products.length) return;
 
-    let filtered = products;
+    let base =
+      category === "All"
+        ? products
+        : products.filter(p => p.productCategory === category);
 
     if (searchQuery.trim()) {
       const lowerQuery = searchQuery.toLowerCase();
-      filtered = products.filter((product) =>
+      base = base.filter((product) =>
         product.productName.toLowerCase().includes(lowerQuery) ||
         product.productCategory.toLowerCase().includes(lowerQuery)
       );
     }
 
-    setFilteredProducts(filtered);
-  }, [products, searchQuery]);
+    setFilteredProducts(base);
+
+  }, [searchQuery, category, products]);
 
   return (
     <div className="flex flex-col flex-1 px-2 sm:px-4">
